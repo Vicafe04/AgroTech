@@ -42,6 +42,17 @@ CREATE TABLE `Manutencao` (
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
+-- CreateTable
+CREATE TABLE `Usuarios` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `nome` VARCHAR(191) NOT NULL,
+    `email` VARCHAR(191) NOT NULL,
+    `senha` VARCHAR(191) NOT NULL,
+    `cargo` VARCHAR(191) NOT NULL,
+
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
 -- AddForeignKey
 ALTER TABLE `Servicos` ADD CONSTRAINT `Servicos_motoristaId_fkey` FOREIGN KEY (`motoristaId`) REFERENCES `Motoristas`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 

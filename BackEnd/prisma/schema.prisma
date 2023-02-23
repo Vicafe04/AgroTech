@@ -47,3 +47,11 @@ model Manutencao {
   Frota Frotas @relation(fields: [frotaId], references: [id])
   frotaId      Int
 }
+
+model Usuarios{
+  id Int @id @default(autoincrement())
+  nome String
+  email String
+  senha String
+  cargo String
+}
