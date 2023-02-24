@@ -4,6 +4,7 @@ CREATE TABLE `Motoristas` (
     `CNH` VARCHAR(191) NOT NULL,
     `CPF` VARCHAR(191) NOT NULL,
     `nome` VARCHAR(191) NOT NULL,
+    `servicoId` INTEGER NOT NULL,
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
@@ -14,7 +15,6 @@ CREATE TABLE `Servicos` (
     `data_saida` DATETIME(3) NOT NULL,
     `retorno` DATETIME(3) NULL,
     `descricao` VARCHAR(191) NOT NULL,
-    `motoristaId` INTEGER NOT NULL,
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
@@ -25,7 +25,7 @@ CREATE TABLE `Frotas` (
     `modelo` VARCHAR(191) NOT NULL,
     `marca` VARCHAR(191) NOT NULL,
     `placa` VARCHAR(191) NOT NULL,
-    `servicoId` INTEGER NOT NULL,
+    `servicoId` INTEGER NULL,
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
@@ -54,10 +54,10 @@ CREATE TABLE `Usuarios` (
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- AddForeignKey
-ALTER TABLE `Servicos` ADD CONSTRAINT `Servicos_motoristaId_fkey` FOREIGN KEY (`motoristaId`) REFERENCES `Motoristas`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE `Motoristas` ADD CONSTRAINT `Motoristas_servicoId_fkey` FOREIGN KEY (`servicoId`) REFERENCES `Servicos`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `Frotas` ADD CONSTRAINT `Frotas_servicoId_fkey` FOREIGN KEY (`servicoId`) REFERENCES `Servicos`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE `Frotas` ADD CONSTRAINT `Frotas_servicoId_fkey` FOREIGN KEY (`servicoId`) REFERENCES `Servicos`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE `Manutencao` ADD CONSTRAINT `Manutencao_frotaId_fkey` FOREIGN KEY (`frotaId`) REFERENCES `Frotas`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;

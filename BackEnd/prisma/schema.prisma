@@ -15,7 +15,8 @@ model Motoristas {
   CNH     String
   CPF     String
   nome    String
-  servico Servicos[]
+  servico Servicos? @relation(fields: [servicoId], references: [id])
+  servicoId Int
 }
 
 model Servicos {
@@ -23,9 +24,8 @@ model Servicos {
   data_saida DateTime
   retorno    DateTime?
   descricao  String
-  Motorista   Motoristas? @relation(fields: [motoristaId], references: [id])
+  motorista Motoristas[]
   Frota Frotas[]
-  motoristaId Int
 }
 
 model Frotas {
@@ -34,7 +34,7 @@ model Frotas {
   marca     String
   placa    String
   manutencao Manutencao[]
-  servicoId Int
+  servicoId Int?
   servico Servicos? @relation(fields: [servicoId], references: [id])
 }
 

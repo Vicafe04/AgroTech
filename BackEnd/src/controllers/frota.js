@@ -21,6 +21,7 @@ const read = async (req, res) => {
             placa: true,
             manutencao: {
                 select: {
+                    valor: true,
                     descricao: true,
                     data_inicio: true,
                     data_fim: true
