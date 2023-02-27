@@ -13,7 +13,7 @@ const Servico = require('../controllers/servicos');
 router.post("/frota/create", Frota.create);
 router.get("/frota/read", Frota.read);
 
-router.post("/login/validar", Middleware.validaAcesso, Login.login)
+router.post("/login/validar", Login.login)
 
 router.post("/manutencao/create", Manutencao.create);
 router.get("/manutencao/read", Manutencao.read);
