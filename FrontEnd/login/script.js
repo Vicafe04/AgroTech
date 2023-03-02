@@ -3,9 +3,8 @@ const inpSenha = document.querySelector('#inpSenha')
 var btnEnviar = document.querySelector("#btn");
 var acc = false;
 
-inpEmail.value = "gere@gmail.com"
 
-inpSenha.value = "senha123"
+
 
 function logar() {
 
@@ -27,7 +26,6 @@ function logar() {
             return response.json();
         })
         .then((data) => {
-            console.log(data)
 
             if ((dados.email == data.email) && (dados.senha == data.senha)) {
                 acc = true;
@@ -35,7 +33,7 @@ function logar() {
 
             if (acc == true) {
                 alert("acesso permitido");
-                localStorage.setItem('User', data.cargo);
+                localStorage.setItem('userID', data.id);
                 window.location.href = "../home/index.html";
             } else {
                 alert("acesso negado");

@@ -34,6 +34,23 @@ const login = async (req, res) => {
     
 }
 
+const readId = async (req, res) => {
+    let usuarios = await prisma.usuarios.findMany({
+        select: {
+            nome: true,
+            email: true,
+            senha: true,
+            cargo: true
+        },
+        where: {
+            id: Number(req.params.id)
+        }
+    });
+
+    res.status(200).json(usuarios).end();
+}
+
 module.exports = {
-    login
+    login,
+    readId
 }

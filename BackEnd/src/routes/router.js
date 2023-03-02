@@ -14,6 +14,7 @@ router.post("/frota/create", Frota.create);
 router.get("/frota/read", Frota.read);
 
 router.post("/login/validar", Login.login)
+router.get("/login/readId/:id", Login.readId)
 
 router.post("/manutencao/create", Manutencao.create);
 router.get("/manutencao/read", Manutencao.read);
