@@ -8,12 +8,20 @@
     <title>Document</title>
 </head>
 <body onload="load()">
-    <div class="list">
-        <div class="item-list model">
-            <p class="marca"></p>
-            <p class="modelo"></p>
-            <p class="placa"></p>
+    <div class="main"></div>
+        <div class="list">
+            <div class="item-list model">
+                <p class="marca"></p>
+                <p class="modelo"></p>
+                <p class="placa"></p>
+            </div>
         </div>
+    </div>
+    <div class="add">
+        <input id="inpMarca" type="text">
+        <input id="inpModelo" type="text">
+        <input id="inpPlaca" type="text">
+        <button onclick="add()">Add</button>
     </div>
 </body>
 <script src="./script.js"></script>
