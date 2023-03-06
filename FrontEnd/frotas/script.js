@@ -26,11 +26,24 @@ function add() {
         marca: inpMarca.value,
         placa: inpPlaca.value
     }
+console.log(inpModel.value)
+console.log(inpMarca.value)
+console.log(inpPlaca.value)
+
 
     const options = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(dados)
     };
-    fetch("http://localhost:3000/frota/read", options)
+    fetch("http://localhost:3000/frota/create", options)
+        .then(resp => resp.status)
+        .then(resp => {
+            if (resp == 200)
+                window.location.reload()
+            else
+            console.log(resp)
+                alert("Item já está cadastrado.");
+        })
+        .catch(err => console.error(err));
 }

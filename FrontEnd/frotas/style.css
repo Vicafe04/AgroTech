@@ -69,7 +69,7 @@ button{
     background-color: rgb(255, 51, 0);
     border: 1px solid black;
     border-radius: 50px;
-    width: 100px;
+    width: 200px;
     height: 30px;
 }
 
@@ -77,4 +77,14 @@ button:hover{
     background-color: rgb(255, 0, 0);
     transition: 0.5;
     border: 2px solid black;
+}
+
+.add{
+    padding: 50px;
+}
+
+input{
+    width: 250px;
+    height: 30px;
+
 }
