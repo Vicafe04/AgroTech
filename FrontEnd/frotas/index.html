@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,30 +8,39 @@
     <link rel="stylesheet" href="./style.css">
     <title>Document</title>
 </head>
+
 <body onload="load()">
-    <div class="main"></div>
-        <div class="list">
-            <div class="item-list model">
-                <p class="marca"></p>
-                <p class="modelo"></p>
-                <p class="placa"></p>
+    <div class="main">
+    <div class="list">
+        <div class="item-list model" onclick="modalDesc(this)">
+            <p class="marca"></p>
+            <p class="modelo"></p>
+            <p class="placa"></p>
+            <button id="delBTN" onclick="remove()"><img id="trash" src="../../Docs/img/free-trash-icon-347-thumb.png" alt=""></button>
+            <div id="mDesc" class="modal mDesc">
+                <div class="modal-body">
+                    <p class="desc"></p>
+                </div>
             </div>
         </div>
+
     </div>
-    <div class="add">
-        <p>Marca</p>
-        <input id="inpMarca" type="text">
-        <br/>
-        <br/>
-        <p>Modelo</p>
-        <input id="inpModelo" type="text">
-        <br/>
-        <br/>
-        <p>Placa</p>
-        <input id="inpPlaca" type="text">
-        <br/>
-        <button onclick="add()">Add</button>
     </div>
+    <form class="add">
+        <label>Marca</label>
+        <input id="inpMarca" type="text" required>
+        <br>
+        <br>
+        <label>Modelo</label>
+        <input id="inpModelo" type="text" required>
+        <br>
+        <br>
+        <label>Placa</label>
+        <input id="inpPlaca" type="text" required>
+        <br>
+        <button class="addBTN" onclick="add()">Add</button>
+    </form>
 </body>
 <script src="./script.js"></script>
+
 </html>

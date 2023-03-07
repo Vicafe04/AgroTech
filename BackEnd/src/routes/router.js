@@ -12,6 +12,7 @@ const Servico = require('../controllers/servicos');
 
 router.post("/frota/create", Frota.create);
 router.get("/frota/read", Frota.read);
+router.delete("/frota/delete/:id", Frota.remove);
 
 router.post("/login/validar", Login.login)
 router.get("/login/readId/:id", Login.readId)

@@ -33,7 +33,18 @@ const read = async (req, res) => {
     res.status(200).json(frotas).end();
 }
 
+const remove = async (req, res) => {
+    let frota = await prisma.frotas.delete({
+        where: {
+            id: Number(req.params.id)
+        }
+    });
+
+    res.status(200).json(frota).end();
+}
+
 module.exports = {
     create,
-    read
+    read,
+    remove
 }
