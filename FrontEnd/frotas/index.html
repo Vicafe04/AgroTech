@@ -11,20 +11,15 @@
 
 <body onload="load()">
     <div class="main">
-    <div class="list">
-        <div class="item-list model" onclick="modalDesc(this)">
-            <p class="marca"></p>
-            <p class="modelo"></p>
-            <p class="placa"></p>
-            <button id="delBTN" onclick="remove()"><img id="trash" src="../../Docs/img/free-trash-icon-347-thumb.png" alt=""></button>
-            <div id="mDesc" class="modal mDesc">
-                <div class="modal-body">
-                    <p class="desc"></p>
-                </div>
+        <div class="list">
+            <div class="item-list model">
+                <p class="marca"></p>
+                <p class="modelo"></p>
+                <p class="placa"></p>
+                <button id="delBTN" ><img id="trash" src="../../Docs/img/free-trash-icon-347-thumb.png" alt=""></button>
+                <button id="descBTN"><img id="descImg" src="../../Docs/img/description-icon-7.jpg" alt=""></button>
             </div>
         </div>
-
-    </div>
     </div>
     <form class="add">
         <label>Marca</label>
@@ -40,6 +35,13 @@
         <br>
         <button class="addBTN" onclick="add()">Add</button>
     </form>
+
+    <div id=" mDesc ">
+        <div class="modal-body">
+            <H3>Descrição</H3>
+            <p class="desc"></p>
+        </div>
+    </div>
 </body>
 <script src="./script.js"></script>
 

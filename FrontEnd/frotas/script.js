@@ -16,7 +16,7 @@ function load() {
                 item.querySelector(".placa").innerHTML = 'Placa: ' + e.placa;
                 item.querySelector("#delBTN").setAttribute("onclick", `del('${e.id}')`);
                 e.manutencao.forEach(desc => {
-                    item.querySelector(".desc").innerHTML = "Descrição: " + desc.descricao;
+                    item.querySelector("#descBTN").setAttribute("onclick", `modalDesc('${desc.descricao}')`);
                 })
                 lista.appendChild(item);
             })
@@ -67,7 +67,7 @@ function del(id) {
     }
 }
 
-function modalDesc(e) {
-    console.log('funcionou o onclick'+e.childNodes[0])
-    document.querySelector("#mDesc").classList.toggle("model");
+function modalDesc(desc) {
+    console.log(desc)
+    document.querySelector("#mDesc").innerHTML = desc;
 }
