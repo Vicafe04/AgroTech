@@ -16,7 +16,7 @@ model Motoristas {
   CPF     String
   nome    String
   servico Servicos? @relation(fields: [servicoId], references: [id])
-  servicoId Int
+  servicoId Int?
 }
 
 model Servicos {
@@ -44,8 +44,8 @@ model Manutencao {
   descricao     String
   data_inicio    String
   data_fim    String?
-  Frota Frotas @relation(fields: [frotaId], references: [id])
-  frotaId      Int
+  frotaId      Int?
+  Frota Frotas? @relation(fields: [frotaId], references: [id])
 }
 
 model Usuarios{

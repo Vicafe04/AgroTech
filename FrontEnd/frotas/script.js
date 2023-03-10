@@ -69,5 +69,5 @@ function del(id) {
 
 function modalDesc(desc) {
     console.log(desc)
-    document.querySelector("#mDesc").innerHTML = desc;
+    document.querySelector(".desc").innerHTML = desc;
 }
