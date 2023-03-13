@@ -7,21 +7,21 @@ INSERT INTO frotas ( modelo, marca, placa) VALUES
 ('GMC', 'geEMIce', 'GMC1243'),
 ('Chevrolet', 'Chevy', 'SUS6969');
 
-INSERT INTO manutencao (id, valor, descricao, data_inicio, data_fim, frotaId) VALUES
+INSERT INTO manutencao (valor, descricao, data_inicio, data_fim, frotaId) VALUES
 (2560, 'chero de pneu quemado, carburadô furado o X9 foi torrado', '2023-02-24T00:00:00Z', '2023-02-25T00:00:00Z', 1),
 (2560, 'troca da bateria', '2023-02-24T00:00:00Z', '2023-02-25T00:00:00Z', 2),
-(2560, 'awaawa', '2023-02-24T00:00:00Z', '2023-02-25T00:00:00Z', 3),
+(2560, 'awaawa', '2023-02-24T00:00:00Z', '2023-02-25T00:00:00Z', 3);
 
 
 
 INSERT INTO motoristas (CNH, CPF, nome) VALUES
 ('000042353', '44391507803', 'Vinicius');
 
-INSERT INTO servicos (id, data_saida, retorno, descricao) VALUES
+INSERT INTO servicos (data_saida, retorno, descricao) VALUES
 ('2023-02-24 00:00:00.000', '2023-02-25 00:00:00.000', 'Agrotech para Valinhos'),
 ('2023-02-24 00:00:00.000', '2023-02-25 00:00:00.000', 'Agrotech para Valinhos'),
 ('2023-02-24 00:00:00.000', NULL, 'Agrotech para Valinhos');
 
-INSERT INTO usuarios (id, nome, email, senha, cargo) VALUES
+INSERT INTO usuarios (nome, email, senha, cargo) VALUES
 ('GERENTE', 'gere@gmail.com', 'senha123', 'gerente'),
 ('OPERARIO', 'oper@gmail.com', 'senha123', 'operario');
