@@ -1,0 +1,29 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.imgDelivery{
+    width: 60px;
+}
+
+body{
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+}
+
+.item-list, .item-list2{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 300px;
+    justify-content: space-around;
+    border: 2px solid black;
+}
+
+.model{
+    display: none;
+    visibility: hidden;
+}
