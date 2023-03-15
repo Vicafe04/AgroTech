@@ -1,5 +1,3 @@
-const { options } = require("../../BackEnd/src/routes/router")
-
 const list = document.querySelector(".list")
 const itemList = document.querySelector(".item-list")
 const list2 = document.querySelector(".list2")
@@ -7,6 +5,7 @@ const itemList2 = document.querySelector(".item-list2")
 
 const inpIdFunc = document.querySelector(".idFunc")
 const inpIdFrot = document.querySelector(".idFrot")
+const volunteerBTN = document.querySelector("#volunteerBTN")
 
 fetch("http://localhost:3000/servico/read")
     .then(resp => { return resp.json() })
@@ -24,6 +23,7 @@ function load(data) {
             item.querySelector(".destino").innerHTML = "Destino: " + servicos.descricao;
             item.querySelector(".dataSaida").innerHTML = "Data de saida: " + servicos.data_saida.split('T')[0];
             item.querySelector(".dataRetorno").innerHTML = "Data de retorno: " + servicos.retorno.split('T')[0];
+            item.querySelector("#volunteerBTN").setAttribute("onclick", `volunteer('${servicos.id}')`);
             list2.appendChild(item);
         } else {
             let item = itemList.cloneNode(true);
@@ -38,13 +38,18 @@ function load(data) {
             item.querySelector(".dataRetorno").innerHTML = "Data de retorno: " + servicos.retorno.split('T')[0];
             list.appendChild(item);
 
-        }
+        } 
+        
     })
+
+    
 }
 
-function volunteer() {
-    const options={
-        
+function volunteerFunc(id) {
+    console.log(id)
+    const options = {
+        method: "PUT"
     }
-    fetch("http://localhost:3000/motorista/update/" + inpIdFunc, options)
+    fetch("http://localhost:3000/motorista/update/" + inpIdFunc.value, options)
+    
 }

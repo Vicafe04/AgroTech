@@ -40,14 +40,16 @@ const create = async (req, res) => {
     res.status(200).json(servicos).end();
 }
 
-const update = async (req, res) => {
-    let servicos = await prisma.servicos.update({
+let update = async (req, res) => {
+    const servicos = await prisma.servicos.update({
+        where: {
+            id: Number(req.params.id)
+        },
         data: req.body
-    });
+    })
 
     res.status(200).json(servicos).end();
 }
-
 
 module.exports = {
     create,

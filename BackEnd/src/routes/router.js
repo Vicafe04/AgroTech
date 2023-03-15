@@ -13,6 +13,7 @@ const Servico = require('../controllers/servicos');
 router.post("/frota/create", Frota.create);
 router.get("/frota/read", Frota.read);
 router.delete("/frota/delete/:id", Frota.remove);
+router.put("/frota/update/:id", Frota.update);
 
 router.post("/login/validar", Login.login)
 router.get("/login/readId/:id", Login.readId)
@@ -23,9 +24,10 @@ router.put("/manutencao/update/:id", Manutencao.update);
 
 router.get("/motorista/read", Motorista.read);
 router.post("/motorista/create", Motorista.create);
+router.put("/motorista/update/:id", Motorista.update);
 
 router.post("/servico/create", Servico.create);
 router.get("/servico/read", Servico.read);
-router.post("/servico/update/:id", Servico.update);
+router.put("/servico/update/:id", Servico.update);
 
 module.exports = router;
