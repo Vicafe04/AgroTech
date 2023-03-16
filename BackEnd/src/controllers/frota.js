@@ -33,6 +33,30 @@ const read = async (req, res) => {
     res.status(200).json(frotas).end();
 }
 
+const readId = async (req, res) => {
+    let frotas = await prisma.frotas.findUnique({
+        where: {
+            id: Number(req.params.id)
+        },
+        select: {
+            id: true,
+            modelo: true,
+            marca: true,
+            placa: true,
+            manutencao: {
+                select: {
+                    valor: true,
+                    descricao: true,
+                    data_inicio: true,
+                    data_fim: true
+                }
+            }
+        }
+    });
+    res.status(200).json(frotas).end();
+}
+
+
 const remove = async (req, res) => {
     let frota = await prisma.frotas.delete({
         where: {
@@ -57,5 +81,6 @@ module.exports = {
     create,
     read,
     remove,
-    update
+    update,
+    readId
 }

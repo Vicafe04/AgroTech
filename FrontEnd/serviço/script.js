@@ -3,7 +3,6 @@ const itemList = document.querySelector(".item-list")
 const list2 = document.querySelector(".list2")
 const itemList2 = document.querySelector(".item-list2")
 
-const inpIdFunc = document.querySelector(".idFunc")
 const inpIdFrot = document.querySelector(".idFrot")
 const volunteerBTN = document.querySelector("#volunteerBTN")
 
@@ -23,7 +22,7 @@ function load(data) {
             item.querySelector(".destino").innerHTML = "Destino: " + servicos.descricao;
             item.querySelector(".dataSaida").innerHTML = "Data de saida: " + servicos.data_saida.split('T')[0];
             item.querySelector(".dataRetorno").innerHTML = "Data de retorno: " + servicos.retorno.split('T')[0];
-            item.querySelector("#volunteerBTN").setAttribute("onclick", `volunteer('${servicos.id}')`);
+            // item.querySelector("#volunteerBTN").setAttribute("onclick", `volunteerFunc('${servicos.id}')`);
             list2.appendChild(item);
         } else {
             let item = itemList.cloneNode(true);
@@ -38,18 +37,38 @@ function load(data) {
             item.querySelector(".dataRetorno").innerHTML = "Data de retorno: " + servicos.retorno.split('T')[0];
             list.appendChild(item);
 
-        } 
-        
+        }
+
     })
 
-    
+
 }
 
 function volunteerFunc(id) {
-    console.log(id)
-    const options = {
-        method: "PUT"
+    const idServico = id.parentNode.querySelector(".id").innerHTML.split(" ")[1];
+    const inpIdFunc = id.parentNode.querySelector(".idFunc");
+    const inpIdFrot = id.parentNode.querySelector(".idFrot");
+    console.log(idServico)
+
+    let dados = {
+        servicoId: Number(idServico)
     }
-    fetch("http://localhost:3000/motorista/update/" + inpIdFunc.value, options)
-    
+
+    const options = {
+        method: "PUT",
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(dados)
+    }
+
+    fetch(`http://localhost:3000/motorista/update/${inpIdFunc.value}`, options)
+        .then(resp => { return resp.json() })
+        .then(data => console.log(data))
+
+    //-------------------------------------------------------------------------------------------------------------------
+
+    fetch("http://localhost:3000/frota/read")
+        .then(resp => { return resp.json() })
+        .then(data => {
+            console.log(data[0])
+        })
 }

@@ -5,6 +5,7 @@ const prisma = new PrismaClient();
 const read = async (req, res) => {
     let manutencao = await prisma.manutencao.findMany({
         select: {
+            id: true,
             valor: true,
             descricao: true,
             data_inicio: true,
@@ -31,16 +32,26 @@ const update = async (req, res) => {
             id: Number(req.params.id)
         },
         data: req.body
-        
+
 
     });
 
     res.status(200).json(manutencao).end();
 }
 
+const remove = async (req, res) => {
+    let manutencao = await prisma.manutencao.delete({
+        where: {
+            id: Number(req.params.id)
+        }
+    });
+
+    res.status(200).json(manutencao).end();
+}
 
 module.exports = {
     create,
     read,
-    update
+    update,
+    remove
 }
