@@ -19,6 +19,7 @@ const read = async (req, res) => {
             modelo: true,
             marca: true,
             placa: true,
+            servicoId: true,
             manutencao: {
                 select: {
                     valor: true,

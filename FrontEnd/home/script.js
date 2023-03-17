@@ -13,6 +13,7 @@ fetch('http://localhost:3000/login/readId/' + userId)
             aux = 0;
         } else
             aux = 1;
+            localStorage.setItem('cargo', aux);
     })
 
 

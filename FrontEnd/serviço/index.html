@@ -22,17 +22,14 @@
             <p class="placa"></p>
         </div>
     </div>
-    <div class="list2">
-        <div class="item-list2 model">
-            <img class="imgDelivery"></img>
-            <p class="id"></p>
-            <p class="destino"></p>
-            <p class="dataSaida"></p>
-            <p class="dataRetorno"></p>
-            <input placeholder="Id do funcionario" class="idFunc" type="number">
-            <input placeholder="Id do veiculo" class="idFrot" type="number">
-            <button id="volunteerBTN" onclick="volunteerFunc(this)">Voluntariar</button>
-        </div>
+
+    <div class="divCad">
+        <input placeholder="Destino e carga" class="inpDestino" type="text">
+        <input placeholder="Data de saída" class="inpDataSaida" type="text">
+        <input placeholder="Data de retorno" class="inpDataRetorno" type="text">
+        <input placeholder="Id do funcionario" class="idFunc" type="number">
+        <input placeholder="Id do veiculo" class="idFrot" type="number">
+        <button onclick="criarServico()">Criar Serviço</button>
     </div>
 </body>
 <script src="./script.js"></script>

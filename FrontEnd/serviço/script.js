@@ -3,8 +3,11 @@ const itemList = document.querySelector(".item-list")
 const list2 = document.querySelector(".list2")
 const itemList2 = document.querySelector(".item-list2")
 
-const inpIdFrot = document.querySelector(".idFrot")
-const volunteerBTN = document.querySelector("#volunteerBTN")
+
+
+var userCargo = localStorage.getItem('cargo');
+
+
 
 fetch("http://localhost:3000/servico/read")
     .then(resp => { return resp.json() })
@@ -14,44 +17,28 @@ fetch("http://localhost:3000/servico/read")
 
 function load(data) {
     data.forEach(servicos => {
-        if ((servicos.Frota[0] == null) || (servicos.motorista[0] == null)) {
-            let item = itemList2.cloneNode(true);
-            item.classList.remove("model");
-            item.querySelector(".imgDelivery").src = "../../Docs/img/delivery.png";
-            item.querySelector(".id").innerHTML = "Id: " + servicos.id;
-            item.querySelector(".destino").innerHTML = "Destino: " + servicos.descricao;
-            item.querySelector(".dataSaida").innerHTML = "Data de saida: " + servicos.data_saida.split('T')[0];
-            item.querySelector(".dataRetorno").innerHTML = "Data de retorno: " + servicos.retorno.split('T')[0];
-            // item.querySelector("#volunteerBTN").setAttribute("onclick", `volunteerFunc('${servicos.id}')`);
-            list2.appendChild(item);
-        } else {
-            let item = itemList.cloneNode(true);
-            item.classList.remove("model");
-            item.querySelector(".imgDelivery").src = "../../Docs/img/delivery.png";
-            item.querySelector(".id").innerHTML = "Id: " + servicos.id;
-            item.querySelector(".destino").innerHTML = "Destino: " + servicos.descricao;
-            item.querySelector(".motorista").innerHTML = "Motorista: " + servicos.motorista[0].nome;
-            item.querySelector(".veiculo").innerHTML = "Veiculo: " + servicos.Frota[0].marca + servicos.Frota[0].modelo;
-            item.querySelector(".placa").innerHTML = "Placa: " + servicos.Frota[0].placa;
-            item.querySelector(".dataSaida").innerHTML = "Data de saida: " + servicos.data_saida.split('T')[0];
-            item.querySelector(".dataRetorno").innerHTML = "Data de retorno: " + servicos.retorno.split('T')[0];
-            list.appendChild(item);
 
-        }
+        let item = itemList.cloneNode(true);
+        item.classList.remove("model");
+        item.querySelector(".imgDelivery").src = "../../Docs/img/delivery.png";
+        item.querySelector(".id").innerHTML = "Id: " + servicos.id;
+        item.querySelector(".destino").innerHTML = "Destino: " + servicos.descricao;
+        item.querySelector(".motorista").innerHTML = "Motorista: " + servicos.motorista[0].nome;
+        item.querySelector(".veiculo").innerHTML = "Veiculo: " + servicos.Frota[0].marca + " " + servicos.Frota[0].modelo;
+        item.querySelector(".placa").innerHTML = "Placa: " + servicos.Frota[0].placa;
+        item.querySelector(".dataSaida").innerHTML = "Data de saida: " + servicos.data_saida.split('T')[0];
+        item.querySelector(".dataRetorno").innerHTML = "Data de retorno: " + servicos.retorno.split('T')[0];
+        list.appendChild(item);
 
     })
-
-
 }
 
 function volunteerFunc(id) {
-    const idServico = id.parentNode.querySelector(".id").innerHTML.split(" ")[1];
-    const inpIdFunc = id.parentNode.querySelector(".idFunc");
-    const inpIdFrot = id.parentNode.querySelector(".idFrot");
-    console.log(idServico)
+    const inpIdFunc = document.querySelector(".idFunc")
+    const inpIdFrot = document.querySelector(".idFrot")
 
     let dados = {
-        servicoId: Number(idServico)
+        servicoId: Number(id)
     }
 
     const options = {
@@ -66,9 +53,46 @@ function volunteerFunc(id) {
 
     //-------------------------------------------------------------------------------------------------------------------
 
-    fetch("http://localhost:3000/frota/read")
+    fetch(`http://localhost:3000/frota/update/${inpIdFrot.value}`, options)
         .then(resp => { return resp.json() })
         .then(data => {
-            console.log(data[0])
+            console.log(data)
         })
+}
+
+function criarServico() {
+    const inpDestino = document.querySelector(".inpDestino")
+    const inpDataSaida = document.querySelector(".inpDataSaida")
+    const inpDataRetorno = document.querySelector(".inpDataRetorno")
+    if (userCargo == 1) {
+        var dados = {
+            descricao: inpDestino.value,
+            data_saida: inpDataSaida.value,
+            retorno: inpDataRetorno.value,
+        }
+    
+    
+        const options = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(dados)
+        };
+        fetch("http://localhost:3000/servico/create", options)
+            .then(resp => resp.json())
+            .then(data=> {
+                if(data.id) {
+                    volunteerFunc(data.id)
+                }else {
+                    alert("Falha ao cadastrar");
+                }
+                // if (resp == 200)
+                //     window.location.reload()
+                // else
+                //     console.log(resp)
+                // alert("Item já está cadastrado.");
+            })
+            .catch(err => console.error(err));
+    } else {
+        alert("Esta ação não é permitida no seu cargo")
+    }
 }

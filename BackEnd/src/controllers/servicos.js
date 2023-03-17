@@ -33,6 +33,9 @@ const read = async (req, res) => {
 const create = async (req, res) => {
     var info = req.body;
 
+    info.data_saida = new Date(info.data_saida);
+    info.retorno = new Date(info.retorno);
+
     const servicos = await prisma.servicos.create({
         data: info
     });
